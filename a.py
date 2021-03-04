@@ -12,7 +12,7 @@ from sklearn.linear_model import LinearRegression
 data_complete=pd.read_csv('Forest_fire.csv')
 data_head=data_complete.head()
 data_tail=data_complete.tail()
-a=st.sidebar.radio('navigation',['show database','show visualization','use ML module','make module powerfull'])
+a=st.sidebar.radio('navigation',['show database','show visualization','MANUAL ML MODULE','AUTOMATED ML MODULE'])
 
 
 y0 = np.array(data_complete['Fire Occurrence']).reshape(-1,1)
@@ -58,7 +58,7 @@ elif a=='show visualization':
 
 
 
-elif a=='use ML module':
+elif a=='MANUAL ML MODULE':
     oxygen1=st.number_input('oxygen')
     temp1=st.number_input('temrature')
     humidity1=st.number_input('humdity')
@@ -83,7 +83,7 @@ elif a=='use ML module':
     elif r=='outout':
         y
   
-elif a=='make module powerfull':
+elif a=='AUTOMATED ML MODULE':
 
     user_input = st.text_input("ENTER CITY", 'pune')
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&appid=ac4073a87a991a712b197b7e8bc04930&units=metric'.format(user_input)
