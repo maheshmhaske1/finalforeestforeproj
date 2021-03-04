@@ -110,8 +110,5 @@ elif a=='make module powerfull':
         else:
             st.success('forrest in safe')
         st.text(data)
-        st.json(
-
-
-        )
+        
 
