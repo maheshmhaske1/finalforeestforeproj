@@ -110,6 +110,7 @@ elif a=='make module powerfull':
         else:
             st.success('forrest in safe')
         if st.checkbox("SHOW WEATHER DATA :>"):
-        st.text(data)
+            st.text(Loading...)
+            st.text(data)
         
 
