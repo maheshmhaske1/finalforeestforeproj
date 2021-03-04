@@ -1,10 +1,14 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+#import weather
+import requests
+import time
+import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
-import warnings
 
-print(warnings)
+
+
 data_complete=pd.read_csv('Forest_fire.csv')
 data_head=data_complete.head()
 data_tail=data_complete.tail()
@@ -23,21 +27,28 @@ if a=='show database':
     if st.checkbox("complete database"):
         st.text("showing complete database")
         data_complete
+        st.balloons()
+
 
     elif st.checkbox('show head of database'):
         st.text("showing head of database")
         data_head
+        st.balloons()
 
     elif st.checkbox('show tail of database'):
         st.text("showing tail if database")
         data_tail
+        st.balloons()
+    
+
 
 
 
 elif a=='show visualization':
-    if st.checkbox("graph"):
-        st.line_chart(data_complete)
-
+    if st.checkbox("1"):
+        chart_data = pd.DataFrame(
+        columns = ['Oxygen', 'Temperature', 'Humidity'])
+        st.line_chart(chart_data)
     elif st.checkbox('2'):
         st.image('bb.png')
 
@@ -53,25 +64,54 @@ elif a=='use ML module':
     humidity1=st.number_input('humdity')
     model=LinearRegression()
     if st.button('predict'):
+        progress=st.progress(0)
+        for i in range(100):
+            time.sleep(0.001)
+            progress.progress(i+1)
         model.fit(x,y)
         op=(model.predict([[oxygen1,temp1,humidity1]]))
+        st.text('RESULT : ')
         op
-        if op >10:
+        if op >0.50:
             st.warning('forrest in danger')
         else:
             st.success('forrest in safe')
+            st.balloons()
     r=st.radio('view data',['input','outout'])
     if r=='input':
         x
     elif r=='outout':
         y
-
-    elif st.checkbox('view all inputs'):
-        x
-    elif st.checkbox('view output on data'):
-        y
-    else:
-        st.spinner('in process')
-
+  
 elif a=='make module powerfull':
-    st.text('we are designing it please wait...')
+
+    user_input = st.text_input("ENTER CITY", 'pune')
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&appid=ac4073a87a991a712b197b7e8bc04930&units=metric'.format(user_input)
+    res = requests.get(url)
+    data = res.json()
+    temp = data['main']['temp']
+    humidity = data['main']['temp']
+    wind_speed = data['wind']['speed']
+    latitude = data['coord']['lat']
+    longitude = data['coord']['lon']
+    description = data['weather'][0]['description']
+    if st.button('predict'):
+        model1=LinearRegression()
+        progress = st.progress(0)
+        for i in range(100):
+            time.sleep(0.001)
+            progress.progress(i + 1)
+        model1.fit(x, y)
+        op = (model1.predict([[2, temp,humidity]]))
+        st.text('RESULT : ')
+        op
+        if op > 0.50:
+            st.warning('forrest in danger')
+        else:
+            st.success('forrest in safe')
+        st.text(data)
+        st.json(
+
+
+        )
+
