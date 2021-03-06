@@ -46,15 +46,17 @@ if a=='show database':
 
 elif a=='show visualization':
     if st.checkbox("1"):
-        chart_data = pd.DataFrame(
-        columns = ['Oxygen', 'Temperature', 'Humidity'])
-        st.line_chart(chart_data)
+        st.bar_chart(data_complete['Oxygen'])
+        st.bar_chart(data_complete['Temperature'])
+        st.bar_chart(data_complete['Humidity'])
+
+       
     elif st.checkbox('2'):
-        st.image('bb.png')
+        st.line_chart(data_complete)
 
 
     elif st.checkbox('3'):
-        st.image('dd.jpg')
+        st.bar_chart(data_complete)
 
 
 
