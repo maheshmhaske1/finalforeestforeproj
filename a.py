@@ -45,17 +45,17 @@ if a=='show database':
 
 
 elif a=='show visualization':
-    if st.checkbox("1"):
+    if st.checkbox("BAR CHART"):
         st.bar_chart(data_complete['Oxygen'])
         st.bar_chart(data_complete['Temperature'])
         st.bar_chart(data_complete['Humidity'])
 
        
-    elif st.checkbox('2'):
+    elif st.checkbox('LINE CHART'):
         st.line_chart(data_complete)
 
 
-    elif st.checkbox('3'):
+    elif st.checkbox('COMPLETE BAR CHART'):
         st.bar_chart(data_complete)
 
 
